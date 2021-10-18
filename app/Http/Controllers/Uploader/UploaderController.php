@@ -15,6 +15,7 @@ class UploaderController extends Controller
     use RespondsWithHttpStatus;
 
     public function uploader(Request $request){
+
         
         $validator = Validator::make($request->all(),[
             'image' => 'required'
@@ -33,12 +34,12 @@ class UploaderController extends Controller
             $image->move($destinationPath, $name);
 
             $img = Image::make(public_path('/').'/'.$name);
-            $img->save(public_path('/storage/'.$imageType).'/'.$name);
+            $img->save(storage_path('/app/public/'.$imageType).'/'.$name);
             
             // delete temporary file
             unlink($destinationPath.'/'.$name);
 
-            return url('').'/images/'.$imageType.'/'.$name;
+            return url('').'/p/'.$imageType.'/'.$name;
         }
     }
 }
