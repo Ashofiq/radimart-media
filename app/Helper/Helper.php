@@ -48,7 +48,9 @@ class Helper{
         }
         return $result;
     }
-
+    public static function imgrandomNumber($length){
+        return substr(str_shuffle(str_repeat($x='0123456789qwertyuiopasdfghjklzxcvbnm', ceil($length/strlen($x)))), 1 , $length);
+    }
     public static function supportImageExtention(){
         return [
             null,
