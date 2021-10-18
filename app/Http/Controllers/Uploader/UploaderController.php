@@ -75,7 +75,7 @@ class UploaderController extends Controller
         $extension = $request->get('extension');
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $name = Helper::randomNumber(25).'.'.$extension;
+            $name = Helper::imgrandomNumber(30).'.'.$extension;
             $destinationPath = public_path('/');
             $image->move($destinationPath, $name);
 
