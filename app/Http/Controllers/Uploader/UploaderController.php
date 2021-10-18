@@ -14,9 +14,55 @@ class UploaderController extends Controller
 {   
     use RespondsWithHttpStatus;
 
+    /** @OA\Info(title="Redimart ecommerce Image CDN", version="1.0") */
+
+    /**
+     * Image Upload
+     * 
+     * @OA\Post(
+     *     path="/uploader",
+     *     tags={"image"},
+     *     @OA\Response(
+     *         response=201,
+     *         description="success"
+     *     ),
+     *     @OA\MediaType(mediaType="multipart/form-data"),
+    *      @OA\Parameter(
+    *         name="accept",
+    *         in="header",
+    *         description="test",
+    *         @OA\Schema(
+    *             type="string",
+    *             default="multipart/form-data" 
+    *         )
+    *       ),
+    *       @OA\Parameter(
+    *         name="imageType",
+    *         in="header",
+    *         description="test",
+    *         @OA\Schema(
+    *             type="string",
+    *             default="product" 
+    *         )
+    *       ),
+    *       @OA\RequestBody(
+    *       @OA\MediaType(
+    *           mediaType="multipart/form-data",
+    *           @OA\Schema(
+    *               type="object", 
+    *               @OA\Property(
+    *                  property="image",
+    *                  type="file",
+    *                  
+    *               ),
+    *           ),
+    *       )
+    *     ),   
+    * )
+    */
+
     public function uploader(Request $request){
 
-        
         $validator = Validator::make($request->all(),[
             'image' => 'required'
         ]);
@@ -39,7 +85,9 @@ class UploaderController extends Controller
             // delete temporary file
             unlink($destinationPath.'/'.$name);
 
-            return url('').'/p/'.$imageType.'/'.$name;
+            $imageUrl = url('').'/p/'.$imageType.'/'.$name;
+            return $this->success('success', $imageUrl);
+            
         }
     }
 }
