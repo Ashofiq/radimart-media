@@ -14,7 +14,7 @@ class UploaderController extends Controller
 {   
     use RespondsWithHttpStatus;
 
-    /** @OA\Info(title="Redimart ecommerce Image CDN", version="1.0") */
+    /** @OA\Info(title="Radimart ecommerce Image CDN", version="1.0") */
 
     /**
      * Image Upload

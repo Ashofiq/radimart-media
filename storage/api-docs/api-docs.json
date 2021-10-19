@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Redimart ecommerce Image CDN",
+        "title": "Radimart ecommerce Image CDN",
         "version": "1.0"
     },
     "paths": {
