@@ -5,13 +5,13 @@
         "version": "1.0"
     },
     "paths": {
-        "/uploader": {
+        "/radimart-media/uploader": {
             "post": {
                 "tags": [
                     "image"
                 ],
                 "summary": "Image Upload",
-                "operationId": "23628e80158c6c781bd048e5b8869d24",
+                "operationId": "ce9d5146f5cf87b3fbd21b0d9609c119",
                 "parameters": [
                     {
                         "name": "accept",

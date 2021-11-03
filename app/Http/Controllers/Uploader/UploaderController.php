@@ -14,13 +14,19 @@ class UploaderController extends Controller
 {   
     use RespondsWithHttpStatus;
 
+    public function __construct(){
+        header('Access-Control-Allow-Origin: *'); 
+        header('Access-Control-Allow-Methods: *'); 
+        header('Access-Control-Allow-Headers: Origin, X-Requested-With,Authorization, Content-Type, Accept');
+    }
+
     /** @OA\Info(title="Radimart ecommerce Image CDN", version="1.0") */
 
     /**
      * Image Upload
      * 
      * @OA\Post(
-     *     path="/uploader",
+     *     path="/radimart-media/uploader",
      *     tags={"image"},
      *     @OA\Response(
      *         response=201,
@@ -86,7 +92,7 @@ class UploaderController extends Controller
             unlink($destinationPath.'/'.$name);
 
             $imageUrl = url('').'/p/'.$imageType.'/'.$name;
-            return $this->success('success', $imageUrl);
+            return $imageUrl;
             
         }
     }

@@ -19,12 +19,13 @@ class ImageGuard
      */
     public function handle(Request $request, Closure $next)
     {   
-        if($request->ip() !== '127.0.0.1'){
-            \Log::error('IP address is not whitelisted', ['ip address', $request->ip()]);
-            return $this->failure('IP address is not whitelisted');
-        }
+        // if($request->ip() !== '127.0.0.1'){
+        //     \Log::error('IP address is not whitelisted', ['ip address', $request->ip()]);
+        //     return $this->failure('IP address is not whitelisted');
+        // }
 
         // check supported image path type
+        // $imageType = $request->imageType;
         $imageType = $request->header('imageType');
         $request->attributes->set('imageType', $imageType);
         if(!array_search($imageType, Helper::supportedImagePathType())){
