@@ -25,8 +25,8 @@ class ImageGuard
         // }
 
         // check supported image path type
-        // $imageType = $request->imageType;
-        $imageType = $request->header('imageType');
+        $imageType = $request->imageType;
+        // $imageType = $request->header('imageType');
         $request->attributes->set('imageType', $imageType);
         if(!array_search($imageType, Helper::supportedImagePathType())){
             return $this->failure('Set your real image path in header');
