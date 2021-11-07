@@ -67,7 +67,8 @@ class Helper{
             'product',
             'customer',
             'vendor',
-            'admin'
+            'admin',
+            'others'
         ];
     }
     
