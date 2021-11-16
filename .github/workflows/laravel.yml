@@ -34,5 +34,5 @@ jobs:
         script: |
           cd /home/radimart/public_html/media
           git checkout -f 
-        git pull 
+          git pull 
   
