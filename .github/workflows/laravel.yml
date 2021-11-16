@@ -33,6 +33,6 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         script: |
           cd /home/radimart/public_html/media
-          git checkout -f 
+          git checkout -master 
           git push 
   
