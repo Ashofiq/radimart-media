@@ -15,7 +15,11 @@ use App\Http\Controllers\Response\ResponseController;
 |
 */
 
-Route::Post('/uploader', [UploaderController::class,'uploader'])->middleware('ImageGuard');
+Route::get('/phpinfo', function() {
+    return phpinfo();
+});
+
+Route::Post('/uploader', [UploaderController::class,'uploader'])->middleware('ImageGuard', 'Cors');
 Route::Get('p/{imageType}/{name}', [ResponseController::class,'response']);
 
 

@@ -32,9 +32,14 @@ class ImageGuard
             return $this->failure('Set your real image path in header');
         }
 
-        // 
-        $extension = $request->file('image')->extension();
-        $request->attributes->set('extension', $extension);
+        //
+        if($request->hasFile('image')){
+            $extension = $request->file('image')->extension();
+            $request->attributes->set('extension', $extension);
+        } else{
+            $extension = 'png';
+        }
+       
         // check supported image extention
         if(!array_search($extension, Helper::supportImageExtention())){
             return $this->failure('This type of image is not supported');

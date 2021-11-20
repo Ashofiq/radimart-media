@@ -68,7 +68,8 @@ class Helper{
             'customer',
             'vendor',
             'admin',
-            'others'
+            'others',
+            'static'
         ];
     }
     

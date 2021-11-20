@@ -78,22 +78,40 @@ class UploaderController extends Controller
         }
 
         $imageType = $request->get('imageType');
-        $extension = $request->get('extension');
+        if ($request->hasFile('image')) {
+            $extension = $request->get('extension');
+        }else{
+            $extension = 'png';
+        }
+        
+        $name = Helper::imgrandomNumber(30).'.'.$extension;
+        $destinationPath = public_path('/');
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $name = Helper::imgrandomNumber(30).'.'.$extension;
-            $destinationPath = public_path('/');
+
             $image->move($destinationPath, $name);
 
-            $img = Image::make(public_path('/').'/'.$name);
-            $img->save(storage_path('/app/public/'.$imageType).'/'.$name);
-            
-            // delete temporary file
-            unlink($destinationPath.'/'.$name);
-
-            $imageUrl = url('').'/p/'.$imageType.'/'.$name;
-            return $imageUrl;
-            
+        }else{
+            fopen($destinationPath.'/'.$name, "w");
+            file_put_contents($destinationPath.'/'.$name, file_get_contents($request->image));
+        
         }
+
+        // upload image
+        return $this->uploadImage($imageType, $name);
+
+    }
+
+    public function uploadImage($imageType, $name){
+
+        $img = Image::make(public_path('/').'/'.$name);
+        $img->save(storage_path('/app/public/'.$imageType).'/'.$name);
+        
+        // delete temporary file
+        unlink(public_path('/').'/'.$name);
+
+        $imageUrl = url('').'/p/'.$imageType.'/'.$name;
+        return $imageUrl;
     }
 }
